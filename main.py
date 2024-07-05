@@ -16,7 +16,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import SGDRegressor
 
-# dagshub.init(repo_owner='in2itsaurabh', repo_name='student_performance', mlflow=True)
+dagshub.init(repo_owner='in2itsaurabh', repo_name='student_performance', mlflow=True)
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
@@ -45,7 +45,7 @@ def preprocess_data(df, fit=False):
         x_trans = preproseccing.fit_transform(x)
     else:
         x_trans = preproseccing.transform(x)
-    return x_trans, y
+    return x_trans, y# 4      86                         No            6                        9           71
 
 data_list = []
 initial_batch_size = 100
@@ -64,7 +64,7 @@ def eval_metrics(actual, pred):
     rmse = np.sqrt(mean_squared_error(actual, pred))
     mae = mean_absolute_error(actual, pred)
     r2 = r2_score(actual, pred)
-    return rmse, mae, r2
+    return rmse, mae, r2# 4      86                         No            6                        9           71
 
 if __name__ == "__main__":
     batch_data = []
