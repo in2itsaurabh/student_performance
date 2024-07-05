@@ -21,11 +21,11 @@ try:
     for i in range(len(df)):
         l1=df.iloc[i:i+1].values[0].tolist()
         data=input_data(*l1)
-        producer.send('student-details', data)
+        producer.send('student_performance', data)
         producer.flush()  # Ensure all messages are sent before 
         print(f"Sent: {data}")
 except Exception as e:
     print(f"Failed to send data: {e}")
 
 # Close the producer
-# producer.close()
+producer.close()

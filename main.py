@@ -16,13 +16,13 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import SGDRegressor
 
-dagshub.init(repo_owner='in2itsaurabh', repo_name='mlflowpr', mlflow=True)
+dagshub.init(repo_owner='in2itsaurabh', repo_name='student_performance', mlflow=True)
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
 os.environ['GIT_PYTHON_REFRESH'] = 'quiet'
 
-consumer = KafkaConsumer('student-performance',
+consumer = KafkaConsumer('student_performance',
                          bootstrap_servers='localhost:9092',
                          auto_offset_reset='earliest',
                          value_deserializer=lambda x: json.loads(x.decode('utf-8')))
