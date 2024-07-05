@@ -16,7 +16,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.linear_model import SGDRegressor
 
-dagshub.init(repo_owner='in2itsaurabh', repo_name='student_performance', mlflow=True)
+# dagshub.init(repo_owner='in2itsaurabh', repo_name='student_performance', mlflow=True)
 warnings.filterwarnings("ignore")
 logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
@@ -49,7 +49,7 @@ def preprocess_data(df, fit=False):
 
 data_list = []
 initial_batch_size = 100
-batch_size =200
+batch_size =1000
 
 for _ in range(initial_batch_size):
     message = next(consumer)
@@ -66,8 +66,6 @@ def eval_metrics(actual, pred):
     r2 = r2_score(actual, pred)
     return rmse, mae, r2
 
-print("Starting to consume messages...")
-
 if __name__ == "__main__":
     batch_data = []
     for message in consumer:
@@ -77,6 +75,7 @@ if __name__ == "__main__":
 
             if len(batch_data) >= batch_size:
                 df = pd.DataFrame(batch_data)
+                print(df.head(5))
                 x, y = preprocess_data(df)
                 model.partial_fit(x, y)
 
@@ -105,3 +104,5 @@ if __name__ == "__main__":
             print("Received a message that couldn't be decoded as JSON. Skipping...")
         except Exception as e:
             print(f"An error occurred: {e}")
+
+
