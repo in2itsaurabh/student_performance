@@ -75,7 +75,6 @@ if __name__ == "__main__":
 
             if len(batch_data) >= batch_size:
                 df = pd.DataFrame(batch_data)
-                print(df.head(5))
                 x, y = preprocess_data(df)
                 model.partial_fit(x, y)
 
@@ -84,8 +83,8 @@ if __name__ == "__main__":
 
                 with mlflow.start_run():
                     print("Model trained with current data:")
-                    print("  RMSE: %s" % rmse)
-                    print("  MAE: %s" % mae)
+                    # print("  RMSE: %s" % rmse)
+                    # print("  MAE: %s" % mae)
                     print("  R2: %s" % r2)
 
                     mlflow.log_metric("rmse", rmse)
