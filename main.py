@@ -45,7 +45,7 @@ def preprocess_data(df, fit=False):
         x_trans = preproseccing.fit_transform(x)
     else:
         x_trans = preproseccing.transform(x)
-    return x_trans, y# 4      86                         No            6                        9           71
+    return x_trans, y
 
 data_list = []
 initial_batch_size = 100
@@ -64,7 +64,7 @@ def eval_metrics(actual, pred):
     rmse = np.sqrt(mean_squared_error(actual, pred))
     mae = mean_absolute_error(actual, pred)
     r2 = r2_score(actual, pred)
-    return rmse, mae, r2# 4      86                         No            6                        9           71
+    return rmse, mae, r2
 
 if __name__ == "__main__":
     batch_data = []
