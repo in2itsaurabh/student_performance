@@ -22,7 +22,7 @@ logging.basicConfig(level=logging.WARN)
 logger = logging.getLogger(__name__)
 os.environ['GIT_PYTHON_REFRESH'] = 'quiet'
 
-consumer = KafkaConsumer('student_performance',
+consumer = KafkaConsumer('student_performance1',
                          bootstrap_servers='localhost:9092',
                          auto_offset_reset='earliest',
                          value_deserializer=lambda x: json.loads(x.decode('utf-8')))
